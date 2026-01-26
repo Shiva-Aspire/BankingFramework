@@ -5,40 +5,50 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
-import java.io.File;
 import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.Properties;
 
 public class BaseClass {
-    WebDriver driver;
+    protected WebDriver driver;
+    protected Properties prop;
 
-    Properties prop;
-    public void loadProperties(){
-        prop=new Properties();
-        File file=new File(System.getProperty("user.dir")+"\\src\\main\\java\\Config.properties");
+    @BeforeMethod
+    public void setUp() {
+        prop = new Properties();
         try {
-            FileInputStream fis=new FileInputStream(file);
-            prop.load(fis);
-        }catch (Exception e){
+            InputStream is = getClass().getClassLoader().getResourceAsStream(("Config.properties"));
+            prop.load(is);
+            if (is == null) {
+                throw new RuntimeException("config properties not found in path");
+            }
+        } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    public WebDriver initializeBrowser(String browserName) {
-        loadProperties();
-        if (browserName.equalsIgnoreCase("chrome")){
-            driver=new ChromeDriver();
-        }else if (browserName.equalsIgnoreCase("edge")){
-            driver=new EdgeDriver();
-        } else if (browserName.equalsIgnoreCase("firefox")) {
-            driver=new FirefoxDriver();
+        String browser = prop.getProperty("browser").toLowerCase();
+        if (browser == null) {
+            throw new RuntimeException("browser key is missing in prop file");
         }
-        return driver;
-    }
+        switch (browser.toLowerCase()) {
+            case "chrome":
+                driver = new ChromeDriver();
+                break;
+            case "edge":
+                driver = new EdgeDriver();
+                break;
+            case "firefox":
+                driver = new FirefoxDriver();
+                break;
+            default:
+                throw new RuntimeException("Browser not supported which provided " + browser);
+        }
+        driver.manage().window().maximize();
+        driver.get(prop.getProperty("url"));
 
+    }
 
     @AfterMethod
-    public void tearDown(){
+    public void tearDown() {
         driver.quit();
     }
 
