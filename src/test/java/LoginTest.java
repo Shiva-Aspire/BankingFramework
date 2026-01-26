@@ -6,31 +6,20 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class LoginTest {
-    WebDriver driver;
+public class LoginTest extends BaseClass {
 
-    @BeforeMethod
-    public void setUp() {
-        driver = new ChromeDriver();
-        driver.get("https://www.qaplayground.com/bank");
-    }
-    @AfterMethod
-    public void teardown(){
-        driver.close();
-    }
-
-    @Test(groups="smoke")
+    @Test(groups = "smoke")
     public void loginTestWithValidCreds() {
         LoginPage lp = new LoginPage(driver);
         lp.clickOnLoginBtn("admin", "admin123");
     }
-    @Test
-    public void loginTestWithInvalidCreds(){
-        LoginPage lp=new LoginPage(driver);
-        lp.clickOnLoginBtnWithInvalidCred("shiva","shiva123");
-        String alertText=driver.findElement(By.cssSelector("#alert-message")).getText();
-        Assert.assertEquals(alertText, "⚠\uFE0F Invalid username or password. Please try again.");
 
+    @Test
+    public void loginTestWithInvalidCreds() {
+        LoginPage lp = new LoginPage(driver);
+        lp.clickOnLoginBtnWithInvalidCred("shiva", "shiva123");
+        String alertText = driver.findElement(By.cssSelector("#alert-message")).getText();
+        Assert.assertEquals(alertText, "⚠\uFE0F Invalid username or password. Please try again.");
     }
 
 }
