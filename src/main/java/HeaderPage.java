@@ -3,14 +3,12 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class HeaderPage extends BasePage {
-
-    WebDriver driver;
+public class HeaderPage extends Utils {
     HeaderPage(WebDriver driver){
         super(driver);
         PageFactory.initElements(driver, this);
     }
-
+    //*************Locators**************************
     //Elements
     @FindBy(xpath="//span[@id='brand-name']")
     private WebElement hdrSecureBank;
@@ -34,7 +32,7 @@ public class HeaderPage extends BasePage {
     private WebElement transactionId;
 
 
-    //Actions
+    // *********   Actions   ************************
     public String getHdrText(){
 
         return getText(hdrSecureBank);
