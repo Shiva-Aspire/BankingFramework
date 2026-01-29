@@ -9,7 +9,7 @@ public class HeaderPage extends Utils {
         PageFactory.initElements(driver, this);
     }
     //*************Locators**************************
-    //Elements
+
     @FindBy(xpath="//span[@id='brand-name']")
     private WebElement hdrSecureBank;
 
@@ -34,7 +34,6 @@ public class HeaderPage extends Utils {
 
     // *********   Actions   ************************
     public String getHdrText(){
-
         return getText(hdrSecureBank);
     }
     public String getTotalBalText(){

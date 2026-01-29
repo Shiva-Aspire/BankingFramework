@@ -4,6 +4,7 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
 
 public class BaseClass{
     protected WebDriver driver;
@@ -31,6 +32,14 @@ public class BaseClass{
         driver.manage().window().maximize();
         driver.get(GlobalProperties.getConfig("url"));
 
+    }
+    @DataProvider(name = "InvalidLoginData")
+    public Object[][] InvalidloginDataProvider(){
+        return ExcelUtils.getExcelData("InvalidLoginData");
+    }
+    @DataProvider(name = "validLoginData")
+    public Object[][] validloginDataProvider(){
+        return ExcelUtils.getExcelData("ValidLoginData");
     }
 
     @AfterMethod
