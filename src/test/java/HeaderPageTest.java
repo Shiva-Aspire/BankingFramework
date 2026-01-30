@@ -2,7 +2,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class HeaderPageTest extends BaseClass{
-    @Test(dataProvider = "validLoginData")
+    @Test(groups = "smoke", dataProvider = "validLoginData")
     public void verifySecureBankHdr(String userName, String password){
         LoginPage lp=new LoginPage(driver);
         lp.clickOnLoginBtn(userName, password);

@@ -1,3 +1,4 @@
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -24,6 +25,10 @@ public class Utils {
     protected void click(WebElement element){
         waitOfClickable(element);
         element.click();
+    }
+    public void jsClick(WebElement element){
+        JavascriptExecutor js=(JavascriptExecutor) driver;
+        js.executeScript("arguments[0].click();",element);
     }
 
 }
