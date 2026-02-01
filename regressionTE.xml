@@ -4,18 +4,15 @@
     <test verbose="2" preserve-order="true" name="Regression Tests">
         <classes>
             <class name="com.bank.tests.LoginTest">
-                <methods>
+               <methods>
                     <include name="loginWithValidCreds"/>
-                </methods>
-                <methods>
-                    <include name="loginWithInvalidCreds"/>
+                   <include name="loginWithInvalidCreds"/>
+                   <include name="verifyloginHomeBtn"/>
                 </methods>
             </class>
             <class name="com.bank.tests.DashboardTest">
                 <methods>
                     <include name="verifyDashboardTopPage"/>
-                </methods>
-                <methods>
                     <include name="verifyAddAccountQuickAction"/>
                 </methods>
             </class>
