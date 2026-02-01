@@ -1,17 +1,20 @@
+package com.bank.tests;
+
+import com.bank.pom.LoginPage;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class LoginTest extends BaseClass {
 
-    @Test(groups = "smoke", dataProvider = "validLoginData")
-    public void loginTestWithValidCreds(String userName, String password) {
+   @Test(groups = {"smoke", "regression"}, dataProvider = "validLoginData")
+    public void loginWithValidCreds(String userName, String password) {
         LoginPage lp = new LoginPage(driver);
         lp.clickOnLoginBtn(userName,password);
     }
 
-    @Test(groups = "Regression", dataProvider = "InvalidLoginData")
-    public void LoginWithInvalidCreds(String userName, String password) {
+    @Test(groups = {"regression"}, dataProvider = "InvalidLoginData")
+    public void loginWithInvalidCreds(String userName, String password) {
         LoginPage lp = new LoginPage(driver);
         lp.clickOnLoginBtn(userName, password);
         String alertText = driver.findElement(By.cssSelector("#alert-message")).getText();

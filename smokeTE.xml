@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Smoke Test Suite">
+    <test verbose="2" preserve-order="true" name="Smoke Tests">
+
+        <classes>
+            <class name="com.bank.tests.LoginTest">
+                <methods>
+                    <include name="loginTestWithValidCreds"/>
+                </methods>
+            </class>
+            <class name="com.bank.tests.HeaderPageTest">
+                <methods>
+                    <include name="verifySecureBankHdr"/>
+                </methods>
+            </class>
+            <class name="com.bank.tests.DashboardTest">
+                <methods>
+                    <include name="verifyAddAccountQuickAction"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

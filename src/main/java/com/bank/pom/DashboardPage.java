@@ -1,12 +1,14 @@
+package com.bank.pom;
+
+import com.bank.Utility.GlobalProperties;
+import com.bank.Utility.Utils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
-public class DashboardPage extends Utils{
-    DashboardPage(WebDriver driver) {
+public class DashboardPage extends Utils {
+    public DashboardPage(WebDriver driver) {
         super(driver);
-        PageFactory.initElements(driver, this);
     }
 
 
@@ -15,25 +17,25 @@ public class DashboardPage extends Utils{
     private WebElement tabdashBoard;
 
     @FindBy(css="#accounts-count-title")
-    WebElement activeAccount;
+    private WebElement activeAccount;
 
     @FindBy(css="#transactions-count-title")
-    WebElement totalTransactions;
+    private WebElement totalTransactions;
 
     @FindBy(xpath = "//a[@id='add-account-link']")
     WebElement addAccountbtn;
 
     @FindBy(xpath = "//input[@id='account-name']")
-    WebElement accountName;
+    private WebElement accountName;
 
     @FindBy(xpath = "//button[@id='account-type']")
-    WebElement selectAccountType;
+    private WebElement selectAccountType;
 
     @FindBy(xpath = "//div[normalize-space()='Savings Account']")
-    WebElement savingsAccountDd;
+    private WebElement savingsAccountDd;
 
     @FindBy(xpath = "//input[@id='initial-balance']")
-    WebElement initalBal;
+    private WebElement initalBal;
 
     @FindBy(xpath = "//button[@id='status-active']")
     WebElement statuActiveRBtn;
@@ -59,6 +61,7 @@ public class DashboardPage extends Utils{
     }
     public void clickOnAccountName(){
         click(accountName);
+        accountName.sendKeys(GlobalProperties.getExpvalues("accountName.txt"));
     }
     public void clickOnSelectAccountType(){
         click(selectAccountType);
@@ -66,6 +69,7 @@ public class DashboardPage extends Utils{
     }
     public void initalBal(){
         click(initalBal);
+        initalBal.sendKeys(GlobalProperties.getExpvalues("initalBalinput.txt"));
     }
     public void clickonStatusActiveRBtn(){
         click(statuActiveRBtn);
