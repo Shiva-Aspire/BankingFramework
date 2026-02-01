@@ -1,28 +1,34 @@
+package com.bank.Utility;
+
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
-public class Utils {
+public class Utils{
     protected WebDriver driver;
     protected WebDriverWait wait;
-    Utils(WebDriver driver){
+
+    public Utils(WebDriver driver){
         this.driver=driver;
+        PageFactory.initElements(driver, this);
         wait=new WebDriverWait(driver, Duration.ofSeconds(10));
     }
-    protected void waitOfVisible(WebElement element){
+
+    public void waitOfVisible(WebElement element){
         wait.until(ExpectedConditions.visibilityOf(element));
     }
-    protected void waitOfClickable(WebElement element){
+    public void waitOfClickable(WebElement element){
         wait.until((ExpectedConditions.elementToBeClickable(element)));
     }
-    protected String getText(WebElement element){
+    public String getText(WebElement element){
         waitOfVisible(element);
         return element.getText();
     }
-    protected void click(WebElement element){
+    public void click(WebElement element){
         waitOfClickable(element);
         element.click();
     }

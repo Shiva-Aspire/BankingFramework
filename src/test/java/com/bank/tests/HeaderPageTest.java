@@ -1,8 +1,13 @@
+package com.bank.tests;
+
+import com.bank.Utility.GlobalProperties;
+import com.bank.pom.HeaderPage;
+import com.bank.pom.LoginPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class HeaderPageTest extends BaseClass{
-    @Test(groups = "smoke", dataProvider = "validLoginData")
+public class HeaderPageTest extends BaseClass {
+    @Test(groups = {"smoke", "regression"},dataProvider = "validLoginData")
     public void verifySecureBankHdr(String userName, String password){
         LoginPage lp=new LoginPage(driver);
         lp.clickOnLoginBtn(userName, password);

@@ -1,3 +1,5 @@
+package com.bank.Utility;
+
 import java.io.FileInputStream;
 import java.util.Properties;
 

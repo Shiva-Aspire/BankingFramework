@@ -1,3 +1,7 @@
+package com.bank.tests;
+
+import com.bank.Utility.ExcelUtils;
+import com.bank.Utility.GlobalProperties;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -6,16 +10,23 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 
-public class BaseClass{
-    protected WebDriver driver;
 
+public class BaseClass {
+    public WebDriver driver;
+    public static String browser;
     @BeforeMethod
     public void setUp() {
         GlobalProperties.loadProp();
         String browser = GlobalProperties.getConfig("browser").toLowerCase();
-        if (browser == null) {
-            throw new RuntimeException("browser key is missing in prop file");
+        if (browser == null || browser.isEmpty()) {
+            browser="chrome";
         }
+        if (System.getenv("browser")!=null && !System.getenv("browser").isBlank()){
+            browser=System.getenv("browser");
+        }else {
+            browser=GlobalProperties.getConfig("browser");
+        }
+
         switch (browser.toLowerCase()) {
             case "chrome":
                 driver = new ChromeDriver();
@@ -33,18 +44,22 @@ public class BaseClass{
         driver.get(GlobalProperties.getConfig("url"));
 
     }
-    @DataProvider(name = "InvalidLoginData")
-    public Object[][] InvalidloginDataProvider(){
-        return ExcelUtils.getExcelData("InvalidLoginData");
-    }
-    @DataProvider(name = "validLoginData")
-    public Object[][] validloginDataProvider(){
-        return ExcelUtils.getExcelData("ValidLoginData");
-    }
 
     @AfterMethod
-    public void tearDown() {
+    public void tearDown(){
         driver.quit();
     }
-
+    @DataProvider(name = "validLoginData")
+    public Object[][] validloginDataProvider() {
+        return ExcelUtils.getExcelData("ValidLoginData");
+    }
+    @DataProvider(name = "InvalidLoginData")
+    public Object[][] InvalidloginDataProvider() {
+        return ExcelUtils.getExcelData("InvalidLoginData");
+    }
 }
+
+
+
+
+
