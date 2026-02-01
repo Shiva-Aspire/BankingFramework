@@ -22,6 +22,10 @@ public class LoginPage extends Utils {
     //LoginButton
     @FindBy(xpath = "//button[@id='login-btn']")
     private WebElement loginBtn;
+    @FindBy(xpath = "//button[contains(text(), 'Home')]")
+    private WebElement loginHomeBtn;
+    @FindBy(xpath = "//p[contains(text(), 'Learn and')]")
+    private WebElement paragraphTxt;
 
 // *********   Actions   ************************
 
@@ -31,5 +35,12 @@ public class LoginPage extends Utils {
         waitOfVisible(passwordFeild);
         passwordFeild.sendKeys(password);
         click(loginBtn);
+    }
+    public void clickHomeBtn(){
+        click(loginHomeBtn);
+
+    }
+    public String getCoffeeImgTxt(){
+        return getText(paragraphTxt);
     }
 }

@@ -1,5 +1,4 @@
 package com.bank.tests;
-
 import com.bank.Utility.ExcelUtils;
 import com.bank.Utility.GlobalProperties;
 import org.openqa.selenium.WebDriver;
@@ -57,6 +56,7 @@ public class BaseClass {
     public Object[][] InvalidloginDataProvider() {
         return ExcelUtils.getExcelData("InvalidLoginData");
     }
+
 }
 
 
