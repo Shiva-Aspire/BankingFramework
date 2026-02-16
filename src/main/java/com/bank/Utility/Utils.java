@@ -1,11 +1,12 @@
 package com.bank.Utility;
 
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.io.File;
 import java.time.Duration;
 
 public class Utils{
@@ -35,6 +36,16 @@ public class Utils{
     public void jsClick(WebElement element){
         JavascriptExecutor js=(JavascriptExecutor) driver;
         js.executeScript("arguments[0].click();",element);
+    }
+    public void takesScreenShot(String screenShotName){
+        TakesScreenshot ts=(TakesScreenshot) driver;
+        File src=ts.getScreenshotAs(OutputType.FILE);
+        File dest=new File("src/test/resources/Screenshots"+screenShotName+".png");
+        try {
+            FileUtils.copyFile(src, dest);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
 }
