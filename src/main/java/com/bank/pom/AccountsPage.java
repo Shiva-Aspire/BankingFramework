@@ -39,6 +39,24 @@ public class AccountsPage extends Utils {
     @FindBy(css = "#reset-filters-btn")
     WebElement resetBtn;
 
+    @FindBy(xpath = "(//button[@type='button'])[3]")
+    WebElement accountNameDd;
+
+    @FindBy(xpath = "//span[text()='Credit Card']")
+    WebElement creditCardFld;
+
+    @FindBy(xpath = "//button[text()='Save Account']")
+    WebElement saveAccBtn;
+
+    @FindBy(xpath = "//div[@class='flex gap-2']/button[1]")
+    WebElement editBtn;
+
+    @FindBy(xpath = "//div[@class='flex gap-2']/button[2]")
+    WebElement deleteBtn;
+    @FindBy(xpath = "//button[@id='confirm-delete-btn']")
+    WebElement confirmDeleteBtn;
+
+
     //********************Actions************************
     public void clickOnAccountsTab(String txt, String ddTxt, String sortTxt){
         click(accountsTab);
@@ -48,7 +66,19 @@ public class AccountsPage extends Utils {
         click(checkingAccountTypeFld);
         click(sortByDD);
         click(sortByBalFld);
+    }
+    public void clickOnEditBtn(){
+        click(accountsTab);
+        waitOfClickable(editBtn);
+        click(editBtn);
+        click(accountNameDd);
+        click(creditCardFld);
+        click(saveAccBtn);
 
+    }
+    public void clickOnDeleteBtn(){
+        click(deleteBtn);
+        click(confirmDeleteBtn);
     }
     public String getAccNameTxt(){
         return getText(accountNameTxt);
