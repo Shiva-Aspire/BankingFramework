@@ -19,4 +19,15 @@ public class AccountsTest extends BaseClass {
         ap.clickOnResetBtn();
         ap.takesScreenShot("accountTab_SS_afterReset");
     }
+
+    @Test(dataProvider = "validLoginData", groups = {"regression"})
+    public void verifyEditBtn(String userName, String password){
+        LoginPage lp = new LoginPage(driver);
+        lp.clickOnLoginBtn(userName, password);
+        AccountsPage ap=new AccountsPage(driver);
+        ap.clickOnEditBtn();
+        ap.takesScreenShot("checkEditBtn");
+        ap.clickOnDeleteBtn();
+        ap.takesScreenShot("checkDelete");
+    }
 }
