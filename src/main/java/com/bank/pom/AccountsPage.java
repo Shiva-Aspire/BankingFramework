@@ -1,13 +1,12 @@
 package com.bank.pom;
 
-import com.bank.Utility.Utils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 
 
-public class AccountsPage extends Utils {
+public class AccountsPage extends ProjectBasePage {
 
     public AccountsPage(WebDriver driver){
         super(driver);

@@ -1,12 +1,11 @@
 package com.bank.pom;
 
 import com.bank.Utility.GlobalProperties;
-import com.bank.Utility.Utils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class DashboardPage extends Utils {
+public class DashboardPage extends ProjectBasePage {
     public DashboardPage(WebDriver driver) {
         super(driver);
     }
@@ -80,9 +79,4 @@ public class DashboardPage extends Utils {
     public void clickOnSaveAccountBtn(){
         click(saveAccountBtn);
     }
-
-
-
-
-
 }

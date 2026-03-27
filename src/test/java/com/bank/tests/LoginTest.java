@@ -26,7 +26,7 @@ public class LoginTest extends BaseClass {
     public void verifyloginHomeBtn(){
        LoginPage lp = new LoginPage(driver);
        lp.clickHomeBtn();
-       Assert.assertEquals(lp.getCoffeeImgTxt(), GlobalProperties.getExpvalues("paragraph.txt"));
+       Assert.assertEquals(lp.paragraphText(), GlobalProperties.getExpvalues("paragraph.txt"));
     }
 
 }

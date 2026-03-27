@@ -1,15 +1,13 @@
 package com.bank.pom;
 
-import com.bank.Utility.Utils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class LoginPage extends Utils {
+public class LoginPage extends ProjectBasePage {
     public LoginPage(WebDriver driver) {
         super(driver);
-        PageFactory.initElements(driver, this);
     }
 
     //*************Locators**************************
@@ -22,9 +20,10 @@ public class LoginPage extends Utils {
     //LoginButton
     @FindBy(xpath = "//button[@id='login-btn']")
     private WebElement loginBtn;
-    @FindBy(xpath = "//button[contains(text(), 'Home')]")
+
+    @FindBy(xpath = "//a[contains(text(), 'Home')]")
     private WebElement loginHomeBtn;
-    @FindBy(xpath = "//p[contains(text(), 'Learn and')]")
+    @FindBy(xpath = "//p[contains(text(), 'Practice Selenium')]")
     private WebElement paragraphTxt;
 
 // *********   Actions   ************************
@@ -40,7 +39,7 @@ public class LoginPage extends Utils {
         click(loginHomeBtn);
 
     }
-    public String getCoffeeImgTxt(){
+    public String paragraphText(){
         return getText(paragraphTxt);
     }
 }
